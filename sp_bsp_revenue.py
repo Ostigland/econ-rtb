@@ -6,7 +6,7 @@ import os
 
 from boost_functions import boost_revenue
 
-def revenue_comparison(experiment):
+def sp_bsp_revenue_comparison(experiment):
     """
     DOCUMENTATION
     """
@@ -18,7 +18,7 @@ def revenue_comparison(experiment):
     boost_data_file_name = experiment + '.json'
     values = open(boost_data_path + boost_data_file_name, "r")
     result_dict = json.load(values)
-    boost_values = result_dict['boost_values']
+    boost_values = result_dict['final_boost_values']
 
     auction_id = test_data_df['request_id'].drop_duplicates().tolist()
     bsp_revenue = 0
@@ -33,7 +33,6 @@ def revenue_comparison(experiment):
     auction_counter = 0
     data_counter = 0
     while auction_counter < len(auction_id)-1:
-    #while auction_counter < 100000:
         bid_dict = {}
         while test_data_df.iloc[data_counter]['request_id'] == auction_id[auction_counter]:
             if str(test_data_df.iloc[data_counter]['adv_id']) in bid_dict:
