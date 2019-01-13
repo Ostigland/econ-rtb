@@ -8,13 +8,11 @@ from boost_functions import boost_optimizer
 
 class Bidder:
     """
-    This class will load the empirical bidder data and then be able to construct each bidder along
-    with their ecdf.
+    DOCUMENTATION
     """
     def __init__(self, bidder_id, n_bins):
         """
-
-        :param bidder_id:
+        DOCUMENTATION
         """
         file_path = os.path.join(os.getcwd(), 'bidder_data')
         file_name = file_path + '/sorted_' + bidder_id + '.json'
@@ -32,16 +30,13 @@ class Bidder:
 
     def bid_sample(self, n_sample):
         """
-
-        :param n_sample:
-        :return:
+        DOCUMENTATION
         """
         return self.inv_cdf(np.random.rand())
 
     def bid_sim(self):
         """
-
-        :return:
+        DOCUMENTATION
         """
         if np.random.rand() < self.participation_rate:
             participation = True
@@ -54,11 +49,11 @@ class Bidder:
 
 if __name__ == '__main__':
     n_simulations = 500000
-    n_bidders = 3
+    n_bidders = 4
     n_bins = 500
     learning_rate = 0.0001
     count_simulations = 0
-    bidders = ['13', '27', '10', '33', '3', '39', '25', '79', '8', '1']
+    bidders = ['XXX']
     bidders = bidders[-n_bidders:]
 
     boost_values = {}
@@ -101,5 +96,5 @@ if __name__ == '__main__':
                    'final_boost_values':boost_values,
                    'bidder_distributions':distribution_dict, 'boost_values':boost_value_lists}
     file_path = os.path.join(os.getcwd(), 'results')
-    file_name = file_path + '/' + 'BOOST_SIMULATION_12-01-2019_3' + '.json'
+    file_name = file_path + '/' + 'NAME' + '.json'
     json.dump(result_dict, open(file_name, "w"))
