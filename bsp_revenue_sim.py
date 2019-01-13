@@ -9,7 +9,7 @@ def bsp_revenue_sim(boost_values_list):
     """
     DOCUMENTATION
     """
-    test_data_path = os.path.join(os.getcwd(), 'auction_dataframes/')
+    test_data_path = os.path.join(os.getcwd(), 'data/')
     test_data_file_name = 'test_data'
     test_data_df = pd.read_csv(test_data_path + test_data_file_name)
     test_data_df = test_data_df.reset_index(drop=True)
@@ -43,7 +43,5 @@ def bsp_revenue_sim(boost_values_list):
         if auction_counter % 100000 == 0:
             print('Iterated through {} auctions for {} bidders.'.format(auction_counter, n_bidders))
 
-
     result_dict = {'n_bidders':n_bidders, 'revenue_list':revenue_list, 'sp_revenue':sp_revenue}
-
     return result_dict
