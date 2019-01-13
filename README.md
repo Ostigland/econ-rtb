@@ -1,1 +1,2 @@
-# econ-rtb
+## econ-rtb
+This repository aims to prpose an alternative method to Golrezaei et al. (2017) by calculating boost values for a BSP auction using an algorithm inspired my Monte Carlo methods. All the advertiser ID:s and file names have been removed or changed. The algorithm only uses the bid distribution and participation rate of different bidders across auctions for different ad slots and then simulates one stylized auction from which it finds the optimal boost values by moving in the direction of an "optimal" set of boost values.
