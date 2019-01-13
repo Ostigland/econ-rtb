@@ -32,42 +32,6 @@ def boost_optimizer(bid_dict, boost_values, learning_rate):
 
     return boost_values
 
-def boost_tuning(parameter_list):
-    """
-    DOCUMENTATION
-    """
-    adv_n, learning_rate = parameter_list
-    data_path = os.path.join(os.getcwd(), 'auction_dataframes')
-    file_name = 'sorted_aggregated_data'
-    data_df = pd.read_csv(data_path + '/' + file_name).iloc[20001:]
-    advertiser = ['46', '27', '10', '33', '3', '39', '25', '79', '1', '8']
-    advertiser = advertiser[-adv_n:]
-    auction_id = data_df['request_id'].drop_duplicates().tolist()
-    data_df = data_df.reset_index(drop=True)
-    boost_values = {}
-    for i in advertiser:
-        boost_values[i] = 1
-
-    auction_counter = 0
-    data_counter = 0
-    while auction_counter < 100000:
-        bid_dict = {}
-        while data_df.iloc[data_counter]['request_id'] == auction_id[auction_counter]:
-            if str(data_df.iloc[data_counter]['adv_id']) in bid_dict:
-                bid_dict[str(data_df.iloc[data_counter]['adv_id'])] = \
-                    max(bid_dict[str(data_df.iloc[data_counter]['adv_id'])], data_df.iloc[data_counter]['bid_price'])
-            else:
-                bid_dict[str(data_df.iloc[data_counter]['adv_id'])] = data_df.iloc[data_counter]['bid_price']
-
-            data_counter += 1
-        boost_values = boost_optimizer(bid_dict, boost_values, learning_rate)
-        auction_counter += 1
-        if auction_counter % 10000 == 0:
-            print('Iterated through {} auctions'.format(auction_counter))
-
-    result_dict = {'parameters':parameter_list, 'boost_values':boost_values}
-    return result_dict
-
 def boost_revenue(bid_dict, boost_values):
     """
     DOCUMENTATION
