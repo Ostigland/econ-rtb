@@ -10,7 +10,7 @@ def sp_bsp_revenue_comparison(experiment):
     """
     DOCUMENTATION
     """
-    test_data_path = os.path.join(os.getcwd(), 'auction_dataframes/')
+    test_data_path = os.path.join(os.getcwd(), 'data/')
     test_data_file_name = 'test_data'
     test_data_df = pd.read_csv(test_data_path + test_data_file_name)
     test_data_df = test_data_df.reset_index(drop=True)
