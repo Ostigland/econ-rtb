@@ -54,7 +54,7 @@ class Bidder:
 
 if __name__ == '__main__':
     n_simulations = 500000
-    n_bidders = 4
+    n_bidders = 3
     n_bins = 500
     learning_rate = 0.0001
     count_simulations = 0
@@ -101,5 +101,5 @@ if __name__ == '__main__':
                    'final_boost_values':boost_values,
                    'bidder_distributions':distribution_dict, 'boost_values':boost_value_lists}
     file_path = os.path.join(os.getcwd(), 'results')
-    file_name = file_path + '/' + 'BOOST_SIMULATION_09-01-2019' + '.json'
+    file_name = file_path + '/' + 'BOOST_SIMULATION_12-01-2019_3' + '.json'
     json.dump(result_dict, open(file_name, "w"))
